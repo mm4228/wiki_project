@@ -11,6 +11,7 @@ class AccountView extends StatelessWidget {
   AccountView({Key? key}) : super(key: key);
   final TextEditingController emailController = TextEditingController();
   final TextEditingController mdpController = TextEditingController();
+  final TextEditingController mdpConfirmController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class AccountView extends StatelessWidget {
                     obscure: true),
                 const SizedBox(height: 15),
                 TextGlobalForm(
-                    controller: mdpController,
+                    controller: mdpConfirmController,
                     text1: 'Confirmer mot de passe',
                     textInputType: TextInputType.text,
                     obscure: true),
