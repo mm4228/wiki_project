@@ -1,17 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:wiki_projet/Models/UserModel.dart';
+import 'package:wiki_projet/dbFiles/dbHelper.dart';
 import 'package:wiki_projet/users/colors.dart';
 import 'package:wiki_projet/views/createaccount.dart';
 import 'package:wiki_projet/views/entry_point.dart';
 import 'package:wiki_projet/views/login.dart';
 
 class ButtonForm extends StatelessWidget {
-  const ButtonForm({Key? key}) : super(key: key);
+  final User? user;
+  final Function onPressed;
+  final TextEditingController mdpcontroller;
+  final TextEditingController mailcontroller;
+  const ButtonForm({Key? key, required this.mdpcontroller, required this.mailcontroller, required this.onPressed, this.user}) : super(key: key);
+
+
+
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>EntryPointView(),),);
+      onTap: () async {
+        onPressed();
+
+        final User model = User(mail: mdpcontroller.text, password: mailcontroller.text, id: user?.id);
+
+        if(user == null) {
+          await DbHelper.addUser(model);
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const EntryPointView(),),);
+
+        } else {
+          print('Update');
+          await DbHelper.updateUser(model);
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const EntryPointView(),),);
+
+        }
+
       },
       child: Container(
         alignment: Alignment.center,

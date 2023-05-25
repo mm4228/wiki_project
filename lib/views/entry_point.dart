@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wiki_projet/Models/UserModel.dart';
 import 'package:wiki_projet/Utiliity/rive_utils.dart';
 import 'package:rive/rive.dart';
+import 'package:wiki_projet/dbFiles/dbHelper.dart';
 import 'package:wiki_projet/users/colors.dart';
+
 
 
 class EntryPointView extends StatefulWidget {
@@ -15,6 +19,7 @@ class _EntryPointViewState extends State<EntryPointView> {
       @override
       Widget build(BuildContext context) {
         return Scaffold(
+
           bottomNavigationBar: SafeArea(
             child: Container(
               padding: const EdgeInsets.all(10),
@@ -45,6 +50,8 @@ class _EntryPointViewState extends State<EntryPointView> {
                           StateMachineController controller = RiveUtils.getRiveController(artboard, stateMachineName: bottomNavs[index].stateMachineName);
                           bottomNavs[index].input = controller.findSMI("active") as SMIBool;
 
+
+
                         },
 
                       ),
@@ -62,6 +69,7 @@ class _EntryPointViewState extends State<EntryPointView> {
 class RiveAsset {
   final String artboard, stateMachineName, title, src;
   late SMIBool? input;
+
 
   RiveAsset(this.src, {
     required this.artboard,
