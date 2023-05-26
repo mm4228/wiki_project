@@ -10,15 +10,26 @@ class DbHelper {
   static const String _dbName = "Wiki.db";
 
   static Future<Database> _getDb() async {
-    return openDatabase(join(await getDatabasesPath(), _dbName),
-        onCreate: (db, version) async => await db.execute(
-            "CREATE TABLE User(id INTEGER PRIMARY KEY, mail TEXT NOT NULL, password TEXT NOT NULL);"),
-        version: _version);
+    return openDatabase(
+      join(await getDatabasesPath(), _dbName),
+      onCreate: (db, version) async {
+        await db.execute(
+          "CREATE TABLE User(id INTEGER PRIMARY KEY, mail TEXT NOT NULL, password TEXT NOT NULL);",
+        );
+
+        await db.execute(
+          "CREATE TABLE Commentary(id INTEGER PRIMARY KEY, content TEXT NOT NULL);",
+        );
+
+        // Ajoutez autant de tables que nécessaire en utilisant des appels à execute
+
+      },
+      version: _version,
+    );
   }
 
   static Future<int> addUser(User user) async {
     final db = await _getDb();
-    print('TableCreate');
     return await db.insert("User", user.toJson(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
@@ -42,16 +53,12 @@ class DbHelper {
   static Future<List<User>?> getAllUser() async {
     final db = await _getDb();
     final List<Map<String, dynamic>> maps = await db.query("User");
-    print("YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-    print(maps.length);
     if(maps.isEmpty) {
       print("nuls");
       return null;
     }
     return List.generate(maps.length, (index) => User.fromJson(maps[index]));
   }
-
-
 
 
 }
