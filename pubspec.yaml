@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  sqflite_common_ffi_web: ^0.1.0-dev.1
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   hexcolor: ^3.0.1
@@ -37,10 +38,10 @@ dependencies:
   path: ^1.8.2
   sqflite: ^2.2.6
   path_provider: ^2.0.13
-  rive: ^0.10.3
-
+  rive:
 
 dev_dependencies:
+
   flutter_test:
     sdk: flutter
 

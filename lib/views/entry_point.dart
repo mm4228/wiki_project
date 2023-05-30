@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:wiki_projet/Models/UserModel.dart';
 import 'package:wiki_projet/Utiliity/rive_utils.dart';
 import 'package:rive/rive.dart';
+import 'package:wiki_projet/dbFiles/dbHelper.dart';
 import 'package:wiki_projet/users/colors.dart';
+import 'package:wiki_projet/views/CommentaryView.dart';
+import 'package:wiki_projet/views/login.dart';
 
 class EntryPointView extends StatefulWidget {
   const EntryPointView({Key? key}) : super(key: key);
@@ -54,6 +59,20 @@ class _EntryPointViewState extends State<EntryPointView> {
                   bottomNavs.length,
                   (index) => GestureDetector(
                         onTap: () {
+                          if (index == 2) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => CommentaryView(),
+                              ),
+                            );
+                          }
+                          if (index == 3) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => CommentaryView(),
+                              ),
+                            );
+                          }
                           bottomNavs[index].input!.change(true);
                           Future.delayed(const Duration(seconds: 2), () {
                             bottomNavs[index].input!.change(false);
