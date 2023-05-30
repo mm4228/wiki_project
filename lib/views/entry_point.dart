@@ -7,6 +7,8 @@ import 'package:wiki_projet/dbFiles/dbHelper.dart';
 import 'package:wiki_projet/users/colors.dart';
 import 'package:wiki_projet/views/CommentaryView.dart';
 import 'package:wiki_projet/views/login.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 class EntryPointView extends StatefulWidget {
   const EntryPointView({Key? key}) : super(key: key);
@@ -19,6 +21,31 @@ class _EntryPointViewState extends State<EntryPointView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Menu Wiki"),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset('assets/images/flutter_logo.svg', height: 30),
+            SizedBox(height: 6),
+            Text('Flutter',
+                style: TextStyle(fontSize: 32, color: Colors.black)),
+            SizedBox(height: 15),
+            SvgPicture.asset('assets/images/Kotlin_Icon.svg', height: 30),
+            SizedBox(height: 6),
+            Text('Kotlin', style: TextStyle(fontSize: 32, color: Colors.black)),
+            SizedBox(height: 15),
+            SvgPicture.asset('assets/images/xamarin.svg', height: 30),
+            SizedBox(height: 6),
+            Text('Xamarin',
+                style: TextStyle(fontSize: 32, color: Colors.black)),
+            SizedBox(height: 6),
+          ],
+        ),
+      ),
       bottomNavigationBar: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(10),
