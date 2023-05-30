@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wiki_projet/Models/CommentaryModel.dart';
+import 'package:wiki_projet/dbFiles/dbHelper.dart';
 import 'package:wiki_projet/users/colors.dart';
-
 
 class CommentaryView extends StatelessWidget {
   @override
@@ -26,14 +27,45 @@ class RectangleItem extends StatefulWidget {
 }
 
 class _RectangleItemState extends State<RectangleItem> {
-  bool showComments = false;
-  List<String> comments = [];
-  final String title = "cc";
-  final String content = "OUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUU";
+  List<Commentary>? commentaryList = [];
 
+  @override
+  void initState() {
+    super.initState();
+    _getCommentaryList();
+  }
+
+  Future<void> _getCommentaryList() async {
+    commentaryList = await DbHelper.getAllCommentary();
+    setState(() {
+      // Update the comments list when commentaryList changes
+      comments = commentaryList?.map((commentary) => commentary.content).toList();
+    });
+  }
+
+  Future<void> _deleteCommentary(Commentary commentary) async {
+    int rowsDeleted = await DbHelper.deleteCommentary(commentary);
+
+    if (rowsDeleted > 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Commentaire supprimé avec succès')),
+      );
+      _getCommentaryList();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erreur lors de la suppression du commentaire')),
+      );
+    }
+  }
+
+  Commentary? commentary;
+  bool showComments = false;
+  List<String>? comments = [];
+  final String title = "cc";
+  final String content =
+      "OUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUU";
 
   final TextEditingController commentController = TextEditingController();
-
 
   void toggleComments() {
     setState(() {
@@ -50,18 +82,21 @@ class _RectangleItemState extends State<RectangleItem> {
     );
   }
 
-  void addComment() {
+  void addComment() async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Ajouter un commentaire', style: TextStyle(fontSize: 15, color: GlobalsColors.textColor)),
+          title: Text(
+            'Ajouter un commentaire',
+            style: TextStyle(fontSize: 15, color: GlobalsColors.textColor),
+          ),
           content: TextField(
             controller: commentController,
             decoration: InputDecoration(
               hintText: 'Entrez votre commentaire',
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: GlobalsColors.mainColor), // Changer la couleur du trait ici
+                borderSide: BorderSide(color: GlobalsColors.mainColor),
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: GlobalsColors.textColor),
@@ -70,22 +105,30 @@ class _RectangleItemState extends State<RectangleItem> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Annuler', style: TextStyle(fontSize: 15, color: GlobalsColors.textColor)),
+              child: Text(
+                'Annuler',
+                style: TextStyle(fontSize: 15, color: GlobalsColors.textColor),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             ElevatedButton(
-              child: Text('Ajouter', style: TextStyle(fontSize: 15, color: GlobalsColors.textColor)),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: GlobalsColors.mainColor, // Background color
+              child: Text(
+                'Ajouter',
+                style: TextStyle(fontSize: 15, color: GlobalsColors.textColor),
               ),
-              onPressed: () {
-                setState(() {
-                  comments.add(commentController.text);
-                  commentController.clear();
-                });
-                Navigator.of(context).pop();
+              style: ElevatedButton.styleFrom(
+                backgroundColor: GlobalsColors.mainColor,
+              ),
+              onPressed: () async {
+                if (commentController.text.isNotEmpty) {
+                  Commentary newCommentary =
+                  Commentary(content: commentController.text, id: commentary?.id);
+                  await DbHelper.addCommentary(newCommentary);
+                  _getCommentaryList();
+                  Navigator.of(context).pop();
+                }
               },
             ),
           ],
@@ -118,24 +161,23 @@ class _RectangleItemState extends State<RectangleItem> {
               child: ElevatedButton(
                 onPressed: () {
                   _viewFullContent(context);
-
                 },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: GlobalsColors.mainColor, // Background color
-                  ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: GlobalsColors.mainColor,
+                ),
                 child: const Text('Voir l\'intégralité du texte'),
               ),
             ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextButton(
-                  onPressed: () {
-                    // Action à effectuer lors du clic sur le bouton "Voir les commentaires"
-                    toggleComments();
-                  },
-                  child: Text(showComments ? 'Cacher les commentaires' : 'Voir les commentaires', style: TextStyle(fontSize: 15, color: GlobalsColors.textColor)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextButton(
+                onPressed: toggleComments,
+                child: Text(
+                  showComments ? 'Cacher les commentaires' : 'Voir les commentaires',
+                  style: TextStyle(fontSize: 15, color: GlobalsColors.textColor),
                 ),
               ),
+            ),
             if (showComments)
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -144,17 +186,29 @@ class _RectangleItemState extends State<RectangleItem> {
                     ElevatedButton(
                       onPressed: addComment,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: GlobalsColors.mainColor, // Background color
+                        backgroundColor: GlobalsColors.mainColor,
                       ),
                       child: const Text('Ajouter un commentaire'),
                     ),
-                    if (comments.isNotEmpty)
+                    if (comments != null && comments!.isNotEmpty)
                       ListView(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        children: comments.map((comment) {
+                        children: comments!.map((comment) {
                           return ListTile(
                             title: Text(comment),
+                            trailing: IconButton(
+                              icon: Icon(Icons.delete),
+                              onPressed: () {
+                                Commentary? selectedCommentary = commentaryList?.firstWhere(
+                                      (commentary) => commentary.content == comment
+
+                                );
+                                if (selectedCommentary != null) {
+                                  _deleteCommentary(selectedCommentary);
+                                }
+                              },
+                            ),
                           );
                         }).toList(),
                       ),

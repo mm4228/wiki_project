@@ -11,30 +11,50 @@ class ButtonForm extends StatelessWidget {
   final Function onPressed;
   final TextEditingController mdpcontroller;
   final TextEditingController mailcontroller;
-  const ButtonForm({Key? key, required this.mdpcontroller, required this.mailcontroller, required this.onPressed, this.user}) : super(key: key);
 
+  const ButtonForm({
+    Key? key,
+    required this.mdpcontroller,
+    required this.mailcontroller,
+    required this.onPressed,
+    this.user,
+  }) : super(key: key);
 
+  Future<void> _authenticateUser(BuildContext context) async {
+    final String email = mailcontroller.text;
+    final String password = mdpcontroller.text;
 
+    final User? authenticatedUser = await DbHelper.getUserByEmail(email, password);
+
+    if (authenticatedUser != null) {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const EntryPointView(),),);
+      // Authentification réussie
+    } else {
+      // Authentification échouée
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Authentification échouée'),
+          content: Text('Le mail ou le mot de passe est incorrect.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
         onPressed();
-
-        final User model = User(mail: mdpcontroller.text, password: mailcontroller.text, id: user?.id);
-
-        if(user == null) {
-          await DbHelper.addUser(model);
-          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const EntryPointView(),),);
-
-        } else {
-          print('Update');
-          await DbHelper.updateUser(model);
-          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const EntryPointView(),),);
-
-        }
-
+        await _authenticateUser(context);
       },
       child: Container(
         alignment: Alignment.center,
@@ -46,15 +66,14 @@ class ButtonForm extends StatelessWidget {
             BoxShadow(
               color: Colors.black,
               blurRadius: 10,
-
             ),
           ],
         ),
-        child: const Text('Se connecter',
+        child: const Text(
+          'Se connecter',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
-
           ),
         ),
       ),
