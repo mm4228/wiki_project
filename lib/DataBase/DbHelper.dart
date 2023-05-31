@@ -1,12 +1,13 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:wiki_projet/Models/CommentaryModel.dart';
+import 'package:wiki_projet/Models/ProjectModel.dart';
 
 import 'package:wiki_projet/Models/UserModel.dart';
 
 class DbHelper {
   static const int _version = 1;
-  static const String _dbName = "Wiki5.db";
+  static const String _dbName = "Wiki_6.db";
 
   static Future<Database> _getDb() async {
     return openDatabase(
@@ -18,6 +19,10 @@ class DbHelper {
 
         await db.execute(
           "CREATE TABLE Commentary(id INTEGER PRIMARY KEY, content TEXT NOT NULL);",
+        );
+
+        await db.execute(
+          "CREATE TABLE Project(id INTEGER PRIMARY KEY, title TEXT NOT NULL, description TEXT NOT NULL, resources TEXT NOT NULL, languages TEXT NOT NULL, time TEXT NOT NULL);",
         );
 
         // Ajoutez autant de tables que nécessaire en utilisant des appels à execute
@@ -86,7 +91,7 @@ class DbHelper {
   }
 
 
-  static Future<User?> getUserByEmail(String email, String password) async {
+  static Future<User?> getUserVerifyMailPassword(String email, String password) async {
     final db = await _getDb();
     final List<Map<String, dynamic>> maps = await db.query(
       "User",
@@ -98,6 +103,28 @@ class DbHelper {
       return User.fromJson(maps.first);
     }
     return null;
+  }
+
+  // Méthodes pour les projets
+
+  static Future<int> addProject(Project project) async {
+    final db = await _getDb();
+    return await db.insert("Project", project.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  static Future<int> deleteProject(Project project) async {
+    final db = await _getDb();
+    return await db.delete("Project", where: 'id = ?', whereArgs: [project.id]);
+  }
+
+  static Future<List<Project>?> getAllProjects() async {
+    final db = await _getDb();
+    final List<Map<String, dynamic>> maps = await db.query("Project");
+    if (maps.isEmpty) {
+      return null;
+    }
+    return List.generate(maps.length, (index) => Project.fromJson(maps[index]));
   }
 
 

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:wiki_projet/Models/UserModel.dart';
-import 'package:wiki_projet/users/colors.dart';
-import 'package:wiki_projet/views/widgets/button.form.confirm.account.dart';
-import 'package:wiki_projet/views/widgets/button.form.dart';
-import 'package:wiki_projet/views/widgets/social.login.logo.dart';
-import 'package:wiki_projet/views/widgets/text.global.form.dart';
-import 'package:get/get.dart';
+import 'package:wiki_projet/Views/CreateAccountView.dart';
+import 'package:wiki_projet/Views/Widgets/ButtonConnection.dart';
+import 'package:wiki_projet/Views/Widgets/SocialLogoLogin.dart';
+import 'package:wiki_projet/Views/Widgets/TextGlobalForm.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
 
 
-class AccountView extends StatelessWidget {
-  AccountView({Key? key, this.user}) : super(key: key);
+class LoginView extends StatelessWidget {
+  LoginView({Key? key, this.user}) : super(key: key);
   final TextEditingController emailController = TextEditingController();
   final TextEditingController mdpController = TextEditingController();
   final User? user;
@@ -39,7 +38,7 @@ class AccountView extends StatelessWidget {
                 ),
                 const SizedBox(height: 50),
                 Text(
-                  'Créer votre compte',
+                  'Login to your account',
                   style: TextStyle(
                     color: GlobalsColors.textColor,
                     fontSize: 16,
@@ -61,15 +60,42 @@ class AccountView extends StatelessWidget {
                     text1: user?.password == null ? "1" : "2",
                     textInputType: TextInputType.text,
                     obscure: true),
-                const SizedBox(height: 15),
-                ButtonCreateForm(mailcontroller: emailController, mdpcontroller: mdpController, onPressed: () {
+                const SizedBox(height: 20),
+                ButtonConnection(mailcontroller: emailController, mdpcontroller: mdpController,onPressed: () {
                 }),
                 const SizedBox(height: 35),
-                SocialLogoLogin(),
-
+                const SocialLogoLogin(),
               ],
             ),
           ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 50,
+        color: Colors.white,
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Pas de compte ?  ',
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CreateAccountView(),
+                  ),
+                );
+              },
+              child: Text(
+                'Créer un compte',
+                style: TextStyle(
+                  color: GlobalsColors.mainColor,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

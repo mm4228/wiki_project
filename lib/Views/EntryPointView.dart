@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:wiki_projet/Models/UserModel.dart';
-import 'package:wiki_projet/Utiliity/rive_utils.dart';
+import 'package:wiki_projet/Utiliity/RivesUtils.dart';
 import 'package:rive/rive.dart';
-import 'package:wiki_projet/dbFiles/dbHelper.dart';
-import 'package:wiki_projet/users/colors.dart';
-import 'package:wiki_projet/views/CommentaryView.dart';
-import 'package:wiki_projet/views/UserList.dart';
-import 'package:wiki_projet/views/login.dart';
+import 'package:wiki_projet/Views/CommentaryView.dart';
+import 'package:wiki_projet/Views/ListProjetsViews.dart';
+import 'package:wiki_projet/Views/UserListView.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
@@ -71,7 +68,7 @@ class _EntryPointViewState extends State<EntryPointView> {
                           if (index == 3) {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => UserListPage(),
+                                builder: (context) => ProjectListPage(),
                               ),
                             );
                           }

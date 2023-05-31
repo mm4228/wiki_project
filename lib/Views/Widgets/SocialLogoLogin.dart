@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wiki_projet/users/colors.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
