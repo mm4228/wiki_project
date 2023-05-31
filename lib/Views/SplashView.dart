@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:wiki_projet/users/colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wiki_projet/Views/LoginView.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:get/get.dart';
-import 'package:wiki_projet/views/login.dart';
 
 
 class SplashView extends StatelessWidget {
@@ -18,16 +19,8 @@ class SplashView extends StatelessWidget {
     });
     return Scaffold(
       backgroundColor: GlobalsColors.mainColor,
-      body: const Center(
-        child: Text(
-          'Logo',
-          style: TextStyle(
-
-            color: Colors.white,
-            fontSize: 30,
-            fontWeight: FontWeight.bold
-          ),
-        ),
+      body:  Center(
+        child: SvgPicture.asset('assets/images/Logo.svg', height: 300)
       ),
     );
   }

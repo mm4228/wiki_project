@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wiki_projet/views/splash.dart';
+
+import 'Views/SplashView.dart';
 
 void main() {
   runApp(const myApp());

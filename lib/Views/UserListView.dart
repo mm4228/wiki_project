@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:wiki_projet/Models/UserModel.dart';
-import 'package:wiki_projet/dbFiles/dbHelper.dart'; // Assure-toi d'importer correctement le modèle User
 
-class UserListPage extends StatefulWidget {
+import '../DataBase/DbHelper.dart';
+
+class UserListView extends StatefulWidget {
   @override
   _UserListPageState createState() => _UserListPageState();
 }
 
-class _UserListPageState extends State<UserListPage> {
+class _UserListPageState extends State<UserListView> {
   List<User>? _userList; // Liste des utilisateurs
 
   @override
@@ -30,13 +31,13 @@ class _UserListPageState extends State<UserListPage> {
     if (rowsDeleted > 0) {
       // Suppression réussie
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Utilisateur supprimé avec succès')),
+        const SnackBar(content: Text('Utilisateur supprimé avec succès')),
       );
       _getUserList(); // Rafraîchit la liste des utilisateurs après la suppression
     } else {
       // Erreur lors de la suppression
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erreur lors de la suppression de l\'utilisateur')),
+        const SnackBar(content: Text('Erreur lors de la suppression de l\'utilisateur')),
       );
     }
   }
@@ -45,7 +46,7 @@ class _UserListPageState extends State<UserListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Liste des utilisateurs'),
+        title: const Text('Liste des utilisateurs'),
       ),
       body: _userList != null
           ? ListView.builder(
@@ -56,13 +57,13 @@ class _UserListPageState extends State<UserListPage> {
             title: Text(user.mail),
             subtitle: Text(user.password),
             trailing: IconButton(
-              icon: Icon(Icons.delete),
+              icon: const Icon(Icons.delete),
               onPressed: () => _deleteUser(user), // Appelle la fonction _deleteUser pour supprimer l'utilisateur
             ),
           );
         },
       )
-          : Center(
+          : const Center(
         child: CircularProgressIndicator(),
       ),
     );

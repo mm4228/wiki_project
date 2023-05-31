@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:wiki_projet/Models/UserModel.dart';
-import 'package:wiki_projet/dbFiles/dbHelper.dart';
-import 'package:wiki_projet/users/colors.dart';
-import 'package:wiki_projet/views/createaccount.dart';
-import 'package:wiki_projet/views/entry_point.dart';
-import 'package:wiki_projet/views/login.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
+import 'package:wiki_projet/Views/EntryPointView.dart';
 
-class ButtonCreateForm extends StatelessWidget {
+import '../../DataBase/DbHelper.dart';
+
+class ButtonCreateAccount extends StatelessWidget {
   final User? user;
   final Function onPressed;
   final TextEditingController mdpcontroller;
   final TextEditingController mailcontroller;
-  const ButtonCreateForm({Key? key, required this.mdpcontroller, required this.mailcontroller, required this.onPressed, this.user}) : super(key: key);
+  const ButtonCreateAccount({Key? key, required this.mdpcontroller, required this.mailcontroller, required this.onPressed, this.user}) : super(key: key);
 
 
 

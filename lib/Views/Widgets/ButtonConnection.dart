@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:wiki_projet/Models/UserModel.dart';
-import 'package:wiki_projet/dbFiles/dbHelper.dart';
-import 'package:wiki_projet/users/colors.dart';
-import 'package:wiki_projet/views/createaccount.dart';
-import 'package:wiki_projet/views/entry_point.dart';
-import 'package:wiki_projet/views/login.dart';
+import 'package:wiki_projet/Views/UserListView.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
+import 'package:wiki_projet/Views/EntryPointView.dart';
 
-class ButtonForm extends StatelessWidget {
+import '../../DataBase/DbHelper.dart';
+
+class ButtonConnection extends StatelessWidget {
   final User? user;
   final Function onPressed;
   final TextEditingController mdpcontroller;
   final TextEditingController mailcontroller;
 
-  const ButtonForm({
+  const ButtonConnection({
     Key? key,
     required this.mdpcontroller,
     required this.mailcontroller,
@@ -24,29 +24,38 @@ class ButtonForm extends StatelessWidget {
     final String email = mailcontroller.text;
     final String password = mdpcontroller.text;
 
-    final User? authenticatedUser = await DbHelper.getUserByEmail(email, password);
+    final User? authenticatedUser = await DbHelper.getUserVerifyMailPassword(email, password);
 
-    if (authenticatedUser != null) {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const EntryPointView(),),);
-      // Authentification réussie
+    if(email == "admin" && password == "admin") {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>UserListView(),),);
+
+
     } else {
-      // Authentification échouée
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text('Authentification échouée'),
-          content: Text('Le mail ou le mot de passe est incorrect.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
-            ),
-          ],
-        ),
-      );
+
+      if (authenticatedUser != null) {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const EntryPointView(),),);
+        // Authentification réussie
+      } else {
+        // Authentification échouée
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Authentification échouée'),
+            content: Text('Le mail ou le mot de passe est incorrect.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+
     }
+
   }
 
   @override

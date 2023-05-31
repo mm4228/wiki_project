@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wiki_projet/Models/CommentaryModel.dart';
-import 'package:wiki_projet/dbFiles/dbHelper.dart';
-import 'package:wiki_projet/users/colors.dart';
+import 'package:wiki_projet/Views/ViewFullContentPage.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
+
+import '../DataBase/DbHelper.dart';
 
 class CommentaryView extends StatelessWidget {
   @override
@@ -222,26 +224,4 @@ class _RectangleItemState extends State<RectangleItem> {
   }
 }
 
-class FullContentPage extends StatelessWidget {
-  final String content;
 
-  const FullContentPage({Key? key, required this.content}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Contenu complet'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Text(
-            content,
-            style: TextStyle(fontSize: 16.0),
-          ),
-        ),
-      ),
-    );
-  }
-}
