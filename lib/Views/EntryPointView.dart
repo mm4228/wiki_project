@@ -6,7 +6,8 @@ import 'package:wiki_projet/Views/ListProjetsViews.dart';
 import 'package:wiki_projet/Views/UserListView.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:wiki_projet/Views/ContentView.dart';
+import 'package:wiki_projet/Views/Widgets/LanguageChoice.dart';
 
 class EntryPointView extends StatefulWidget {
   const EntryPointView({Key? key}) : super(key: key);
@@ -20,29 +21,14 @@ class _EntryPointViewState extends State<EntryPointView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Menu Wiki"),
+        title: SvgPicture.asset('assets/images/Logo.svg', height: 200),
         centerTitle: true,
+        backgroundColor: Colors.orange,
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SvgPicture.asset('assets/images/flutter_logo.svg', height: 30),
-            SizedBox(height: 6),
-            Text('Flutter',
-                style: TextStyle(fontSize: 32, color: Colors.black)),
-            SizedBox(height: 15),
-            SvgPicture.asset('assets/images/Kotlin_Icon.svg', height: 30),
-            SizedBox(height: 6),
-            Text('Kotlin', style: TextStyle(fontSize: 32, color: Colors.black)),
-            SizedBox(height: 15),
-            SvgPicture.asset('assets/images/xamarin.svg', height: 30),
-            SizedBox(height: 6),
-            Text('Xamarin',
-                style: TextStyle(fontSize: 32, color: Colors.black)),
-            SizedBox(height: 6),
-          ],
-        ),
+      body: const Center(
+
+        child: LanguageChoice(),
+
       ),
       bottomNavigationBar: SafeArea(
         child: Container(
