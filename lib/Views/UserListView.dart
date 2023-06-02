@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wiki_projet/Models/UserModel.dart';
+import 'package:wiki_projet/Models/CommentaryModel.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
 
 import '../DataBase/DbHelper.dart';
 
@@ -47,18 +49,71 @@ class _UserListPageState extends State<UserListView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Liste des utilisateurs'),
+        backgroundColor: GlobalsColors.mainColor, // Changement de la couleur de l'entête en rouge
       ),
       body: _userList != null
           ? ListView.builder(
         itemCount: _userList!.length,
         itemBuilder: (context, index) {
           User user = _userList![index];
-          return ListTile(
-            title: Text(user.mail),
-            subtitle: Text(user.password),
-            trailing: IconButton(
-              icon: const Icon(Icons.delete),
-              onPressed: () => _deleteUser(user), // Appelle la fonction _deleteUser pour supprimer l'utilisateur
+          return Card(
+            elevation: 2,
+            margin: const EdgeInsets.all(8),
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    user.mail,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(user.password),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () => _deleteUser(user),
+                  ),
+                ),
+                const Divider(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Liste des commentaires signalés',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                    FutureBuilder<List<Commentary>?>(
+                      future: DbHelper.getSignaledCommentaries(user.id!),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return const Text('Erreur lors du chargement des commentaires signalés');
+                        } else {
+                          List<Commentary>? signaledCommentaries = snapshot.data;
+                          if (signaledCommentaries != null && signaledCommentaries.isNotEmpty) {
+                            return Column(
+                              children: signaledCommentaries.map((commentary) {
+                                return ListTile(
+                                  title: Text(commentary.content),
+                                  subtitle: Text('Signalé'),
+                                  leading: const Icon(Icons.report_problem, color: Colors.red),
+                                );
+                              }).toList(),
+                            );
+                          } else {
+                            return const SizedBox(); // Aucun commentaire signalé
+                          }
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ],
             ),
           );
         },
