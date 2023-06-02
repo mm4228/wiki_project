@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wiki_projet/DataBase/DbHelper.dart';
 import 'package:wiki_projet/Models/ProjectModel.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
 
 class ProjectListPage extends StatefulWidget {
   @override
@@ -117,6 +118,7 @@ class _ProjectListPageState extends State<ProjectListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Liste des projets'),
+        backgroundColor: GlobalsColors.mainColor,
         actions: [
           IconButton(
             icon: Icon(Icons.add),

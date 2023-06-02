@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:wiki_projet/Models/CommentaryModel.dart';
+import 'package:wiki_projet/Models/UserModel.dart';
 import 'package:wiki_projet/Views/ViewFullContentPage.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';
-
 import '../DataBase/DbHelper.dart';
 
 class CommentaryView extends StatelessWidget {
@@ -60,12 +61,26 @@ class _RectangleItemState extends State<RectangleItem> {
     }
   }
 
+  Future<void> _signalCommentary(int? commentaryId) async {
+    bool isCommentarySignaled = await DbHelper.signalCommentary(commentaryId!);
+
+    if (isCommentarySignaled) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Commentaire signalé avec succès')),
+      );
+      _getCommentaryList();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erreur lors du signalement du commentaire')),
+      );
+    }
+  }
+
   Commentary? commentary;
   bool showComments = false;
-  List<String>? comments = [];
+  List<String>? comments;
   final String title = "cc";
-  final String content =
-      "OUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUU";
+  final String content = "content1";
 
   final TextEditingController commentController = TextEditingController();
 
@@ -125,9 +140,18 @@ class _RectangleItemState extends State<RectangleItem> {
               ),
               onPressed: () async {
                 if (commentController.text.isNotEmpty) {
-                  Commentary newCommentary =
-                  Commentary(content: commentController.text, id: commentary?.id);
-                  await DbHelper.addCommentary(newCommentary);
+                  int userId = await getCurrentUserId();
+                  String userName = await getCurrentUserEmail();
+
+                  Commentary newCommentary = Commentary(
+                    id: commentary?.id,
+                    isSignaled: 0,
+                    userName: userName,
+                    content: commentController.text,
+                    userId: userId,
+                    date: DateTime.now(),
+                  );
+                  await DbHelper.addCommentary(newCommentary, userId);
                   _getCommentaryList();
                   Navigator.of(context).pop();
                 }
@@ -137,6 +161,24 @@ class _RectangleItemState extends State<RectangleItem> {
         );
       },
     );
+  }
+
+  Future<int> getCurrentUserId() async {
+    User? user = await DbHelper.getCurrentUser();
+    if (user != null) {
+      return user.id!;
+    } else {
+      throw Exception("No logged-in user found.");
+    }
+  }
+
+  Future<String> getCurrentUserEmail() async {
+    User? user = await DbHelper.getCurrentUser();
+    if (user != null) {
+      return user.mail;
+    } else {
+      throw Exception("No logged-in user found.");
+    }
   }
 
   @override
@@ -152,32 +194,49 @@ class _RectangleItemState extends State<RectangleItem> {
                 title,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
-              subtitle: Text(
-                content,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              subtitle: AnimatedCrossFade(
+                firstChild: Text(
+                  content,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                secondChild: Text(
+                  content,
+                  maxLines: 100,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                crossFadeState:
+                showComments ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                duration: const Duration(milliseconds: 300),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
+              trailing: IconButton(
+                icon: Icon(Icons.remove_red_eye),
                 onPressed: () {
                   _viewFullContent(context);
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: GlobalsColors.mainColor,
-                ),
-                child: const Text('Voir l\'intégralité du texte'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: TextButton(
-                onPressed: toggleComments,
-                child: Text(
-                  showComments ? 'Cacher les commentaires' : 'Voir les commentaires',
-                  style: TextStyle(fontSize: 15, color: GlobalsColors.textColor),
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton.icon(
+                    onPressed: toggleComments,
+                    icon: Icon(showComments ? Icons.expand_less : Icons.expand_more),
+                    label: Text(showComments ? 'Voir moins' : 'Voir plus'),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: addComment,
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                      minimumSize: Size(0, 30),
+                      backgroundColor: GlobalsColors.mainColor,
+                    ),
+                    icon: Icon(Icons.add_comment, size: 16),
+                    label: Text('Ajouter commentaire', style: TextStyle(fontSize: 12)),
+                  ),
+                ],
               ),
             ),
             if (showComments)
@@ -185,33 +244,58 @@ class _RectangleItemState extends State<RectangleItem> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    ElevatedButton(
-                      onPressed: addComment,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: GlobalsColors.mainColor,
-                      ),
-                      child: const Text('Ajouter un commentaire'),
-                    ),
                     if (comments != null && comments!.isNotEmpty)
                       ListView(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         children: comments!.map((comment) {
-                          return ListTile(
-                            title: Text(comment),
-                            trailing: IconButton(
-                              icon: Icon(Icons.delete),
-                              onPressed: () {
-                                Commentary? selectedCommentary = commentaryList?.firstWhere(
-                                      (commentary) => commentary.content == comment
+                          Commentary? selectedCommentary;
+                          try {
+                            selectedCommentary = commentaryList?.firstWhere(
+                                  (commentary) => commentary.content == comment,
+                            );
+                          } catch (e) {
+                            // Handle the case when no matching commentary is found
+                            selectedCommentary = null;
+                          }
 
-                                );
-                                if (selectedCommentary != null) {
-                                  _deleteCommentary(selectedCommentary);
-                                }
-                              },
-                            ),
-                          );
+                          if (selectedCommentary != null) {
+                            String userName = selectedCommentary.userName ?? 'Unknown User';
+                            String date = DateFormat.yMd().add_Hm().format(selectedCommentary.date ?? DateTime.now());
+
+                            return ListTile(
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(comment),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    'By $userName on $date',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                ],
+                              ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.delete),
+                                    onPressed: () {
+                                      _deleteCommentary(selectedCommentary!);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.report),
+                                    onPressed: () {
+                                      _signalCommentary(selectedCommentary?.id);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else {
+                            return Container();
+                          }
                         }).toList(),
                       ),
                   ],
@@ -223,5 +307,3 @@ class _RectangleItemState extends State<RectangleItem> {
     );
   }
 }
-
-

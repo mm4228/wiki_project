@@ -21,7 +21,7 @@ class ButtonCreateAccount extends StatelessWidget {
       onTap: () async {
         onPressed();
 
-        final User model = User(mail: mdpcontroller.text, password: mailcontroller.text, id: user?.id);
+        final User model = User(mail: mailcontroller.text, password: mdpcontroller.text, id: user?.id);
 
         if(user == null) {
           await DbHelper.addUser(model);
