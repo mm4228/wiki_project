@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wiki_projet/Views/ContentViewFlutter1.dart';
 
 import 'LanguageDetails.dart';
 
@@ -20,9 +21,9 @@ class LanguageChoice extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                builder: (context) => const LanguageDetails(
-                  title: 'Flutter',
-                  imagePath: 'assets/images/flutter_logo.svg',
+                builder: (context) => const ContentViewFlutter1(
+                  //title: 'Flutter',
+                  //imagePath: 'assets/images/flutter_logo.svg',
                 ),
                 ) ,
               ); // Remplacez 'flutter' par le nom de votre route pour la vue Flutter

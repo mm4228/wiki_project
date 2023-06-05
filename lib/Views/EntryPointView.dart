@@ -6,7 +6,7 @@ import 'package:wiki_projet/Views/ListProjetsViews.dart';
 import 'package:wiki_projet/Views/UserListView.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wiki_projet/Views/ContentView.dart';
+import 'package:wiki_projet/Views/ContentViewFlutter1.dart';
 import 'package:wiki_projet/Views/Widgets/LanguageChoice.dart';
 
 class EntryPointView extends StatefulWidget {
