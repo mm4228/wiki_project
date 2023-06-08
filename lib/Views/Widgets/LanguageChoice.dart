@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wiki_projet/Views/ContentViewFlutter1.dart';
+import 'package:wiki_projet/Views/chapterflutter.dart';
+import 'package:wiki_projet/Views/chapterxamarin.dart';
+import 'package:wiki_projet/Views/chatpterkotlin.dart';
 
 import 'LanguageDetails.dart';
 
@@ -21,7 +24,7 @@ class LanguageChoice extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                builder: (context) => const ContentViewFlutter1(
+                builder: (context) => const chapterflutter(
                   //title: 'Flutter',
                   //imagePath: 'assets/images/flutter_logo.svg',
                 ),
@@ -57,9 +60,9 @@ class LanguageChoice extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const LanguageDetails(
-                    title: 'Kotlin',
-                    imagePath: 'assets/images/Kotlin_Icon.svg',
+                  builder: (context) => const chapterkotlin(
+                   /* title: 'Kotlin',
+                    imagePath: 'assets/images/Kotlin_Icon.svg',*/
                   ),
                 ),
               ); // Remplacez 'kotlin' par le nom de votre route pour la vue Kotlin
@@ -92,9 +95,9 @@ class LanguageChoice extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const LanguageDetails(
-                    title: 'Xamarin',
-                    imagePath: 'assets/images/xamarin.svg',
+                  builder: (context) => const chapterxamarin(
+                   // title: 'Xamarin',
+                    //imagePath: 'assets/images/xamarin.svg',
                   ),
                 ),
               ); // Remplacez 'xamarin' par le nom de votre route pour la vue Xamarin
