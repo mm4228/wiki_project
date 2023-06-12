@@ -8,7 +8,7 @@ import 'package:wiki_projet/Models/InformationModel.dart';
 
 class DbHelper {
   static const int _version = 1;
-  static const String _dbName = "Wiki_12.db";
+  static const String _dbName = "Wiki_20.db";
 
   static Future<Database> _getDb() async {
     return openDatabase(

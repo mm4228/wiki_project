@@ -11,9 +11,9 @@ import 'EntryPointView.dart';
 import 'Widgets/LanguageDetails.dart';
 
 
-class ContentViewFlutter1 extends StatelessWidget {
+class ContentViewXamarin3 extends StatelessWidget {
 
-  const ContentViewFlutter1({super.key});
+  const ContentViewXamarin3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,8 @@ class ContentViewFlutter1 extends StatelessWidget {
         flexibleSpace: Container(
           alignment: Alignment.centerLeft,
           child: const LanguageDetails(
-            title: 'Flutter',
-            imagePath: 'assets/images/flutter_logo.svg',
+            title: 'xamarin',
+            imagePath: 'assets/images/xamarin.svg',
           ),
         ),
 
