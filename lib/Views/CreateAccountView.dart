@@ -48,7 +48,7 @@ class CreateAccountView extends StatelessWidget {
                 //EMail input
                 TextGlobalForm(
                     controller: emailController,
-                    text1: user?.mail == null ? "1" : "2",
+                    text1: user?.mail == null ? "Mail" : "2",
                     obscure: false,
                     textInputType: TextInputType.text),
                 const SizedBox(height: 15),
@@ -56,7 +56,7 @@ class CreateAccountView extends StatelessWidget {
                 //Mdp password
                 TextGlobalForm(
                     controller: mdpController,
-                    text1: user?.password == null ? "1" : "2",
+                    text1: user?.password == null ? "Mot de passe" : "2",
                     textInputType: TextInputType.text,
                     obscure: true),
                 const SizedBox(height: 15),

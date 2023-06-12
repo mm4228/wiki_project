@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wiki_projet/Views/ContentViewFlutter1.dart';
-import 'package:wiki_projet/Views/chapterflutter.dart';
-import 'package:wiki_projet/Views/chapterxamarin.dart';
-import 'package:wiki_projet/Views/chatpterkotlin.dart';
+import 'package:wiki_projet/Views/Chapters/ChapterFlutter.dart';
+import 'package:wiki_projet/Views/Chapters/ChapterKotlin.dart';
+import 'package:wiki_projet/Views/Chapters/ChapterXamarin.dart';
 
 import 'LanguageDetails.dart';
 
@@ -24,7 +22,7 @@ class LanguageChoice extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                builder: (context) => const chapterflutter(
+                builder: (context) => const ChapterFlutter(
                   //title: 'Flutter',
                   //imagePath: 'assets/images/flutter_logo.svg',
                 ),
@@ -60,7 +58,7 @@ class LanguageChoice extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const chapterkotlin(
+                  builder: (context) => const ChapterKotlin(
                    /* title: 'Kotlin',
                     imagePath: 'assets/images/Kotlin_Icon.svg',*/
                   ),
@@ -95,7 +93,7 @@ class LanguageChoice extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const chapterxamarin(
+                  builder: (context) => const ChapterXamarin(
                    // title: 'Xamarin',
                     //imagePath: 'assets/images/xamarin.svg',
                   ),

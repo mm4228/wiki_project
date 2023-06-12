@@ -7,7 +7,7 @@ import 'package:wiki_projet/Views/SettingsView.dart';
 import 'package:wiki_projet/Views/UserListView.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wiki_projet/Views/ContentViewFlutter1.dart';
+import 'package:wiki_projet/Views/ContentFlutter/ContentViewFlutterPartOne.dart';
 import 'package:wiki_projet/Views/Widgets/LanguageChoice.dart';
 
 class EntryPointView extends StatefulWidget {
@@ -33,20 +33,19 @@ class _EntryPointViewState extends State<EntryPointView> {
       appBar: AppBar(
         title: SvgPicture.asset('assets/images/Logo.svg', height: 200),
         centerTitle: true,
-        backgroundColor: Colors.orange,
+        backgroundColor: GlobalsColors.mainColor,
       ),
       body: const Center(
-
         child: LanguageChoice(),
-
       ),
       bottomNavigationBar: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(10),
           margin: const EdgeInsets.symmetric(horizontal: 24),
           decoration: BoxDecoration(
-              color: GlobalsColors.mainColor.withOpacity(0.8),
-              borderRadius: const BorderRadius.all((Radius.circular(24)))),
+            color: GlobalsColors.mainColor,
+            borderRadius: const BorderRadius.all(Radius.circular(24)),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -96,15 +95,15 @@ class _EntryPointViewState extends State<EntryPointView> {
                       onInit: (artboard) {
                         StateMachineController controller =
                         RiveUtils.getRiveController(artboard,
-                            stateMachineName:
-                            bottomNavs[index].stateMachineName);
+                            stateMachineName: bottomNavs[index]
+                                .stateMachineName);
                         bottomNavs[index].input =
                         controller.findSMI("active") as SMIBool;
                       },
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -117,11 +116,13 @@ class RiveAsset {
   final String artboard, stateMachineName, title, src;
   late SMIBool? input;
 
-  RiveAsset(this.src,
-      {required this.artboard,
+  RiveAsset(
+      this.src, {
+        required this.artboard,
         required this.stateMachineName,
         required this.title,
-        this.input});
+        this.input,
+      });
 
   set setInput(SMIBool status) {
     input = status;
@@ -129,20 +130,36 @@ class RiveAsset {
 }
 
 List<RiveAsset> bottomNavs = [
-  RiveAsset("assets/RiveAssets/Icons.riv",
-      artboard: "HOME", stateMachineName: "HOME_Interactivity", title: "Home"),
-  RiveAsset("assets/RiveAssets/Icons.riv",
-      artboard: "SEARCH",
-      stateMachineName: "SEARCH_Interactivity",
-      title: "Search"),
-  RiveAsset("assets/RiveAssets/Icons.riv",
-      artboard: "CHAT", stateMachineName: "CHAT_Interactivity", title: "Chat"),
-  RiveAsset("assets/RiveAssets/Icons.riv",
-      artboard: "BELL", stateMachineName: "BELL_Interactivity", title: "Bell"),
-  RiveAsset("assets/RiveAssets/Icons.riv",
-      artboard: "SETTINGS",
-      stateMachineName: "SETTINGS_Interactivity",
-      title: "Settings"),
+  RiveAsset(
+    "assets/RiveAssets/Icons.riv",
+    artboard: "HOME",
+    stateMachineName: "HOME_Interactivity",
+    title: "Home",
+  ),
+  RiveAsset(
+    "assets/RiveAssets/Icons.riv",
+    artboard: "SEARCH",
+    stateMachineName: "SEARCH_Interactivity",
+    title: "Search",
+  ),
+  RiveAsset(
+    "assets/RiveAssets/Icons.riv",
+    artboard: "CHAT",
+    stateMachineName: "CHAT_Interactivity",
+    title: "Chat",
+  ),
+  RiveAsset(
+    "assets/RiveAssets/Icons.riv",
+    artboard: "BELL",
+    stateMachineName: "BELL_Interactivity",
+    title: "Bell",
+  ),
+  RiveAsset(
+    "assets/RiveAssets/Icons.riv",
+    artboard: "SETTINGS",
+    stateMachineName: "SETTINGS_Interactivity",
+    title: "Settings",
+  ),
 ];
 
 class _LanguageSearchDelegate extends SearchDelegate<String> {
