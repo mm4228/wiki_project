@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wiki_projet/Models/CommentaryModel.dart';
 import 'package:wiki_projet/Models/UserModel.dart';
-import 'package:wiki_projet/Views/ViewFullContentPage.dart';
+import 'package:wiki_projet/Views/FullContentPageView.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';
 import '../DataBase/DbHelper.dart';
 

@@ -8,7 +8,7 @@ import 'package:wiki_projet/Models/InformationModel.dart';
 
 class DbHelper {
   static const int _version = 1;
-  static const String _dbName = "Wiki_21.db";
+  static const String _dbName = "Wiki_22.db"; //Incrémenter le numéro de version "22" pour partir sur une bdd vide
 
   static Future<Database> _getDb() async {
     return openDatabase(

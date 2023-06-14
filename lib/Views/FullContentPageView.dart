@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wiki_projet/Users/GlobalsColors.dart';
 
 class FullContentPage extends StatelessWidget {
   final String content;
@@ -10,6 +11,7 @@ class FullContentPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Contenu complet'),
+        backgroundColor: GlobalsColors.mainColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

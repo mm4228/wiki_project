@@ -11,6 +11,7 @@ class ChapterKotlin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: GlobalsColors.textColor,
@@ -77,7 +78,7 @@ class ChapterKotlin extends StatelessWidget {
       case 1:
         return 'UI et Interactions Utilisateur';
       case 2:
-        return 'Gestion de données et des API';
+        return 'Gestion des données et des API';
       default:
         return '';
     }

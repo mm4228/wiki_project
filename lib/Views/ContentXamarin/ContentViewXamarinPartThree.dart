@@ -1,29 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:wiki_projet/Utiliity/RivesUtils.dart';
-import 'package:rive/rive.dart';
-import 'package:wiki_projet/Views/CommentaryView.dart';
-import 'package:wiki_projet/Views/ListProjetsViews.dart';
-import 'package:wiki_projet/Views/UserListView.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import '../EntryPointView.dart';
 import '../Widgets/LanguageDetails.dart';
 
 class ContentViewXamarinPartThree extends StatelessWidget {
-  const ContentViewXamarinPartThree({Key? key}) : super(key: key);
+  const ContentViewXamarinPartThree({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: GlobalsColors.mainColor,
+        backgroundColor: Colors.orange,
         centerTitle: true,
         flexibleSpace: Container(
           alignment: Alignment.centerLeft,
           child: const LanguageDetails(
-            title: 'Flutter',
-            imagePath: 'assets/images/flutter_logo.svg',
+            title: 'Xamarin',
+            imagePath: 'assets/images/xamarin.svg',
           ),
         ),
       ),
@@ -33,52 +26,40 @@ class ContentViewXamarinPartThree extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RichText(
-                text: TextSpan(
-                  text: 'Qu\'est-ce que ',
-                  style: TextStyle(fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: GlobalsColors.mainColor),
-                  children: [
-                    TextSpan(
-                      text: 'Flutter',
-                      style: TextStyle(fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: GlobalsColors.mainColor),
-                    ),
-                    TextSpan(text: ' ?'),
-                  ],
+              Container(
+                padding: EdgeInsets.all(8),
+                child: Text(
+                  'Accès aux fonctionnalités de la plateforme',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: GlobalsColors.mainColor,
+                  ),
                 ),
               ),
               SizedBox(height: 10),
               Container(
+                padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(8),
-                  color: Colors.white,
                 ),
-                padding: const EdgeInsets.all(8),
                 child: Text(
-                  'Flutter est un framework open-source développé par Google pour créer des applications multiplateformes. Il permet de développer des applications mobiles, web et de bureau avec un seul codebase. Flutter utilise le langage de programmation Dart et offre une expérience de développement rapide et une interface utilisateur riche et réactive.',
+                  'Avec Xamarin, vous pouvez facilement accéder aux fonctionnalités spécifiques à chaque plateforme, telles que l\'appareil photo, les capteurs, la géolocalisation, les notifications push, les services de localisation, etc. Xamarin fournit une API unifiée pour accéder à ces fonctionnalités, ce qui vous permet d\'écrire du code commun pour accéder aux fonctionnalités de la plateforme. Vous pouvez utiliser des bibliothèques Xamarin spécifiques à chaque plateforme, telles que Xamarin.Essentials, pour accéder aux fonctionnalités courantes, ou utiliser des bibliothèques tierces pour accéder à des fonctionnalités plus avancées. En utilisant Xamarin, vous pouvez créer des applications qui exploitent pleinement les fonctionnalités de la plateforme cible, offrant ainsi une expérience utilisateur riche et native.',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
               SizedBox(height: 20),
-              RichText(
-                text: TextSpan(
-                  text: 'Comment créer un projet ',
-                  style: TextStyle(fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: GlobalsColors.mainColor),
-                  children: [
-                    TextSpan(
-                      text: 'Flutter',
-                      style: TextStyle(fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: GlobalsColors.mainColor),
-                    ),
-                    TextSpan(text: ' ?'),
-                  ],
+              Container(
+                padding: EdgeInsets.all(8),
+
+                child: Text(
+                  'Exemples d\'accès aux fonctionnalités de la plateforme',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: GlobalsColors.mainColor,
+                  ),
                 ),
               ),
               SizedBox(height: 10),
@@ -90,7 +71,7 @@ class ContentViewXamarinPartThree extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(8),
                 child: Text(
-                  'Pour créer un projet Flutter, vous devez suivre les étapes suivantes :\n\n1. Installez Flutter SDK : Téléchargez et installez le SDK Flutter à partir du site officiel de Flutter.\n\n2. Configurez l\'environnement de développement : Configurez votre IDE préféré (par exemple, Android Studio, VS Code) pour prendre en charge le développement Flutter.\n\n3. Créez un nouveau projet Flutter : Utilisez la commande `flutter create` pour créer un nouveau projet Flutter.\n\n4. Exécutez le projet : Exécutez le projet Flutter sur un émulateur ou un appareil réel à l\'aide de la commande `flutter run`.\n\n5. Développez votre application : Utilisez votre IDE pour écrire le code et développer votre application Flutter.',
+                  'Voici quelques exemples d\'accès aux fonctionnalités de la plateforme avec Xamarin :\n\n1. Accéder à l\'appareil photo : Utilisez l\'API de la caméra Xamarin pour prendre des photos et enregistrer des vidéos.\n\n2. Accéder à la géolocalisation : Utilisez les services de localisation pour obtenir les coordonnées GPS de l\'appareil.\n\n3. Envoyer des notifications push : Intégrez des services de notification push tels que Firebase Cloud Messaging pour envoyer des notifications à vos utilisateurs.\n\n4. Utiliser des services de localisation : Intégrez des services de cartographie tels que Google Maps ou Mapbox pour afficher des cartes et des itinéraires dans votre application.\n\n5. Utiliser des capteurs : Accédez aux capteurs de l\'appareil, tels que l\'accéléromètre ou le gyroscope, pour créer des fonctionnalités interactives.',
                   style: TextStyle(fontSize: 16),
                 ),
               ),

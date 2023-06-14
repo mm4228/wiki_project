@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wiki_projet/Utiliity/RivesUtils.dart';
 import 'package:rive/rive.dart';
 import 'package:wiki_projet/Views/CommentaryView.dart';
-import 'package:wiki_projet/Views/ListProjetsViews.dart';
+import 'package:wiki_projet/Views/ListProjetsView.dart';
 import 'package:wiki_projet/Views/SettingsView.dart';
 import 'package:wiki_projet/Views/UserListView.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';

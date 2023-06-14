@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wiki_projet/Utiliity/RivesUtils.dart';
 import 'package:rive/rive.dart';
 import 'package:wiki_projet/Views/CommentaryView.dart';
-import 'package:wiki_projet/Views/ListProjetsViews.dart';
+import 'package:wiki_projet/Views/ListProjetsView.dart';
 import 'package:wiki_projet/Views/UserListView.dart';
 import 'package:wiki_projet/Users/GlobalsColors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,8 +22,8 @@ class ContentViewKotlinPartOne extends StatelessWidget {
         flexibleSpace: Container(
           alignment: Alignment.centerLeft,
           child: const LanguageDetails(
-            title: 'Flutter',
-            imagePath: 'assets/images/flutter_logo.svg',
+            title: 'Kotlin',
+            imagePath: 'assets/images/Kotlin_Icon.svg',
           ),
         ),
       ),
@@ -41,7 +41,7 @@ class ContentViewKotlinPartOne extends StatelessWidget {
                       color: GlobalsColors.mainColor),
                   children: [
                     TextSpan(
-                      text: 'Flutter',
+                      text: 'Kotlin',
                       style: TextStyle(fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: GlobalsColors.mainColor),
@@ -59,7 +59,7 @@ class ContentViewKotlinPartOne extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(8),
                 child: Text(
-                  'Flutter est un framework open-source développé par Google pour créer des applications multiplateformes. Il permet de développer des applications mobiles, web et de bureau avec un seul codebase. Flutter utilise le langage de programmation Dart et offre une expérience de développement rapide et une interface utilisateur riche et réactive.',
+                  'Kotlin est un langage de programmation moderne qui a été développé par JetBrains, la même société qui a créé des outils populaires tels qu \'IntelliJ IDEA. Kotlin est conçu pour être entièrement compatible avec Java, ce qui signifie qu\'il peut être utilisé dans les applications Android existantes et qu\'il peut interagir de manière transparente avec le code Java. Cependant, Kotlin va au-delà de Java en introduisant des fonctionnalités puissantes et modernes telles que le typage statique, l\'inférence de types, les fonctions d\'extension et la sécurité de la nullité.',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
@@ -72,7 +72,7 @@ class ContentViewKotlinPartOne extends StatelessWidget {
                       color: GlobalsColors.mainColor),
                   children: [
                     TextSpan(
-                      text: 'Flutter',
+                      text: 'Kotlin',
                       style: TextStyle(fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: GlobalsColors.mainColor),
@@ -90,7 +90,7 @@ class ContentViewKotlinPartOne extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(8),
                 child: Text(
-                  'Pour créer un projet Flutter, vous devez suivre les étapes suivantes :\n\n1. Installez Flutter SDK : Téléchargez et installez le SDK Flutter à partir du site officiel de Flutter.\n\n2. Configurez l\'environnement de développement : Configurez votre IDE préféré (par exemple, Android Studio, VS Code) pour prendre en charge le développement Flutter.\n\n3. Créez un nouveau projet Flutter : Utilisez la commande `flutter create` pour créer un nouveau projet Flutter.\n\n4. Exécutez le projet : Exécutez le projet Flutter sur un émulateur ou un appareil réel à l\'aide de la commande `flutter run`.\n\n5. Développez votre application : Utilisez votre IDE pour écrire le code et développer votre application Flutter.',
+                  'Pour créer un projet Kotlin, vous pouvez suivre les étapes suivantes :\n\nÉtape 1: Ouvrir IntelliJ IDEA (ou tout autre environnement de développement intégré - IDE) :\nAssurez-vous d\'avoir IntelliJ IDEA installé sur votre machine. Ouvrez l\'IDE pour commencer.\n\nÉtape 2: Créer un nouveau projet :\nCliquez sur "File" (Fichier) dans la barre de menu supérieure.\nSélectionnez "New" (Nouveau), puis "Project" (Projet).\nDans la fenêtre de création de projet, choisissez "Kotlin" dans la liste des langages de programmation.\nSélectionnez "Kotlin/JVM" comme type de projet.\nDonnez un nom à votre projet et spécifiez le répertoire de destination.\nCliquez sur "Finish" (Terminer) pour créer le projet.\n\nÉtape 3: Configurer le projet Kotlin :\nUne fois le projet créé, vous pouvez configurer certaines options supplémentaires, telles que la version de Kotlin à utiliser.\nDans IntelliJ IDEA, cliquez avec le bouton droit sur le nom du projet dans l\'arborescence du projet, puis sélectionnez "Open Module Settings" (Ouvrir les paramètres du module).\nDans la fenêtre des paramètres du module, sélectionnez "Project Settings" (Paramètres du projet), puis "Modules".\nSélectionnez le module correspondant à votre projet Kotlin.\nDans l\'onglet "Dependencies" (Dépendances), vous pouvez ajouter des bibliothèques supplémentaires si nécessaire.\nCliquez sur "Apply" (Appliquer) pour enregistrer les modifications.\n\nÉtape 4: Commencer à coder :\nMaintenant que votre projet Kotlin est configuré, vous pouvez commencer à écrire du code Kotlin. Vous pouvez créer de nouveaux fichiers Kotlin, ajouter des classes, des fonctions, des variables, etc. pour développer votre application.\n\nCes étapes vous donneront un point de départ pour créer un projet Kotlin dans IntelliJ IDEA. Vous pouvez personnaliser davantage votre projet en fonction de vos besoins spécifiques. N\'oubliez pas de consulter la documentation de Kotlin et les ressources en ligne pour en apprendre davantage sur la syntaxe et les fonctionnalités du langage.',
                   style: TextStyle(fontSize: 16),
                 ),
               ),

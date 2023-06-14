@@ -15,8 +15,8 @@ class ContentViewKotlinPartTwo extends StatelessWidget {
         flexibleSpace: Container(
           alignment: Alignment.centerLeft,
           child: const LanguageDetails(
-            title: 'Flutter',
-            imagePath: 'assets/images/flutter_logo.svg',
+            title: 'Kotlin',
+            imagePath: 'assets/images/Kotlin_Icon.svg',
           ),
         ),
       ),
@@ -28,13 +28,13 @@ class ContentViewKotlinPartTwo extends StatelessWidget {
             children: [
               RichText(
                 text: TextSpan(
-                  text: 'Qu\'est-ce que ',
+                  text: 'L\'UI (User Interface) en ',
                   style: TextStyle(fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: GlobalsColors.mainColor),
                   children: [
                     TextSpan(
-                      text: 'Flutter',
+                      text: 'Kotlin',
                       style: TextStyle(fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: GlobalsColors.mainColor),
@@ -52,20 +52,20 @@ class ContentViewKotlinPartTwo extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(8),
                 child: Text(
-                  'Flutter est un framework open-source développé par Google pour créer des applications multiplateformes. Il permet de développer des applications mobiles, web et de bureau avec un seul codebase. Flutter utilise le langage de programmation Dart et offre une expérience de développement rapide et une interface utilisateur riche et réactive.',
+                  'En Kotlin, l\'UI (User Interface) fait référence à la manière dont les éléments graphiques sont conçus et affichés dans une application. Kotlin offre plusieurs options pour créer des interfaces utilisateur attrayantes et réactives. Vous pouvez utiliser le système de mise en page flexible d\'Android, appelé ConstraintLayout, pour organiser les éléments de votre interface utilisateur de manière réactive en utilisant des contraintes. Kotlin propose également Anko, une bibliothèque qui facilite la création d\'interfaces utilisateur déclaratives et d\'extensions de vues. De plus, Kotlin dispose de nombreuses bibliothèques tierces et d\'outils pour améliorer la conception de l\'interface utilisateur, tels que Material Design pour créer des interfaces utilisateur élégantes et cohérentes.',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
               SizedBox(height: 20),
               RichText(
                 text: TextSpan(
-                  text: 'Comment créer un projet ',
+                  text: 'L\'interaction utilisateur en ',
                   style: TextStyle(fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: GlobalsColors.mainColor),
                   children: [
                     TextSpan(
-                      text: 'Flutter',
+                      text: 'Kotlin',
                       style: TextStyle(fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: GlobalsColors.mainColor),
@@ -83,7 +83,7 @@ class ContentViewKotlinPartTwo extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(8),
                 child: Text(
-                  'Pour créer un projet Flutter, vous devez suivre les étapes suivantes :\n\n1. Installez Flutter SDK : Téléchargez et installez le SDK Flutter à partir du site officiel de Flutter.\n\n2. Configurez l\'environnement de développement : Configurez votre IDE préféré (par exemple, Android Studio, VS Code) pour prendre en charge le développement Flutter.\n\n3. Créez un nouveau projet Flutter : Utilisez la commande `flutter create` pour créer un nouveau projet Flutter.\n\n4. Exécutez le projet : Exécutez le projet Flutter sur un émulateur ou un appareil réel à l\'aide de la commande `flutter run`.\n\n5. Développez votre application : Utilisez votre IDE pour écrire le code et développer votre application Flutter.',
+                  'En Kotlin, l\'interaction utilisateur concerne la manière dont les utilisateurs interagissent avec l\'application et comment l\'application répond à ces interactions. Vous pouvez gérer l\'interaction utilisateur en Kotlin en utilisant des événements, des écouteurs d\'événements et des actions déclenchées par les utilisateurs. Kotlin offre des fonctionnalités intégrées pour gérer les interactions courantes telles que les clics sur les boutons, les gestes de balayage, les entrées de texte, etc. Vous pouvez également personnaliser l\'interaction utilisateur en créant des animations, des transitions et des effets visuels pour offrir une expérience utilisateur plus immersive. Kotlin permet également d\'interagir avec d\'autres composants du système, tels que l\'appareil photo, les capteurs et les services système, pour enrichir l\'expérience utilisateur.',
                   style: TextStyle(fontSize: 16),
                 ),
               ),

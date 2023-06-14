@@ -15,8 +15,8 @@ class ContentViewXamarinPartTwo extends StatelessWidget {
         flexibleSpace: Container(
           alignment: Alignment.centerLeft,
           child: const LanguageDetails(
-            title: 'Flutter',
-            imagePath: 'assets/images/flutter_logo.svg',
+            title: 'Xamarin',
+            imagePath: 'assets/images/xamarin.svg',
           ),
         ),
       ),
@@ -29,7 +29,7 @@ class ContentViewXamarinPartTwo extends StatelessWidget {
               Container(
                 padding: EdgeInsets.all(8),
                 child: Text(
-                  'Création d\'interfaces utilisateur (UI) et gestion de la mise en page.',
+                  'L\'interface utilisateur avec Xamarin.Forms',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -45,7 +45,7 @@ class ContentViewXamarinPartTwo extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  'Flutter est un framework de développement d\'applications multiplateformes qui permet aux développeurs de créer des interfaces utilisateur (UI) et de gérer la mise en page de manière efficace. Avec Flutter, vous pouvez créer des interfaces riches et réactives, en utilisant un langage de programmation unique, Dart. Le système de widget de Flutter offre une grande flexibilité en matière de conception d\'UI, en permettant aux développeurs de personnaliser chaque aspect de l\'apparence et du comportement de leur application. Que vous souhaitiez créer des interfaces simples ou complexes, Flutter fournit les outils nécessaires pour réaliser vos idées de conception.',
+                  'Xamarin.Forms est un framework de développement d\'interfaces utilisateur multiplateformes qui permet de créer une interface utilisateur unique pour différentes plates-formes, telles qu\'iOS, Android et Windows. Avec Xamarin.Forms, vous pouvez créer des interfaces utilisateur réactives et riches en utilisant des contrôles et des vues prédéfinis, tels que des boutons, des étiquettes, des listes, des grilles, etc. Xamarin.Forms utilise le concept de balisage XAML (eXtensible Application Markup Language) pour définir la structure et l\'apparence de l\'interface utilisateur, ce qui facilite la création d\'interfaces utilisateur attrayantes et cohérentes. Vous pouvez également personnaliser l\'apparence de l\'interface utilisateur en utilisant des styles et des thèmes. Avec Xamarin.Forms, vous pouvez partager une grande partie du code de l\'interface utilisateur entre les différentes plates-formes, ce qui permet de gagner du temps et de maintenir une base de code unique.',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
@@ -54,7 +54,7 @@ class ContentViewXamarinPartTwo extends StatelessWidget {
                 padding: EdgeInsets.all(8),
 
                 child: Text(
-                  'Approche déclarative de Flutter pour la mise en page de l\'UI',
+                  'Créer une interface utilisateur avec Xamarin.Forms',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -64,41 +64,17 @@ class ContentViewXamarinPartTwo extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Container(
-                padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(8),
+                  color: Colors.white,
                 ),
+                padding: const EdgeInsets.all(8),
                 child: Text(
-                  'L\'un des principaux avantages de Flutter est son approche de mise en page déclarative. Au lieu de manipuler directement le DOM (Document Object Model) comme dans les frameworks traditionnels, Flutter utilise un arbre de widgets pour décrire l\'UI de l\'application. Chaque widget représente un élément de l\'interface, allant des éléments de base tels que des boutons et des champs de texte aux mises en page complexes telles que des grilles et des listes. En utilisant des widgets pré-construits ou en créant les vôtres, vous pouvez organiser les éléments de l\'UI de manière hiérarchique, permettant ainsi une gestion facile et efficace de la mise en page de votre application.',
+                  'Pour créer une interface utilisateur avec Xamarin.Forms, vous pouvez suivre les étapes suivantes :\n\n1. Définissez votre interface utilisateur en XAML : Utilisez des balises XAML pour créer la structure et l\'apparence de votre interface utilisateur. Vous pouvez ajouter des contrôles, des mises en page, des styles, etc. selon vos besoins.\n\n2. Liez les données à l\'interface utilisateur : Utilisez la liaison de données pour relier les éléments de votre interface utilisateur aux données de votre application. Vous pouvez lier les propriétés des contrôles à des variables ou à des propriétés dans le code-behind.\n\n3. Gérez les événements utilisateur : Ajoutez des gestionnaires d\'événements pour répondre aux interactions de l\'utilisateur, tels que les clics sur les boutons, les gestes de balayage, etc.\n\n4. Testez et déboguez votre interface utilisateur : Exécutez votre application pour voir votre interface utilisateur en action, et utilisez les outils de débogage pour résoudre les problèmes éventuels.',
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              SizedBox(height: 20),
-              Container(
-                padding: EdgeInsets.all(8),
-                child: Text(
-                  'Widgets prêts à l\'emploi et système de thèmes de Flutter pour des interfaces utilisateur personnalisées.',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: GlobalsColors.mainColor,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  'En plus de la mise en page flexible, Flutter offre également une riche collection de widgets prêts à l\'emploi pour faciliter le développement d\'UI. Ces widgets sont hautement personnalisables et s\'adaptent automatiquement aux différents facteurs tels que la taille de l\'écran et l\'orientation. Flutter fournit également un système de thèmes qui permet de gérer facilement l\'apparence globale de l\'application, en ajustant les couleurs, les polices et d\'autres propriétés visuelles. Avec cette combinaison de widgets et de thèmes, les développeurs peuvent créer des interfaces utilisateur cohérentes et attrayantes, tout en réduisant la complexité et le temps de développement.',
-                  style: TextStyle(fontSize: 16),
-                ),
-              ),
-              SizedBox(height: 20),
             ],
           ),
         ),

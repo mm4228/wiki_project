@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:wiki_projet/Models/UserModel.dart';
 import 'package:wiki_projet/Views/Widgets/ButtonCreateAccount.dart';
 import 'package:wiki_projet/Views/Widgets/SocialLogoLogin.dart';
@@ -25,15 +26,9 @@ class CreateAccountView extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Logo',
-                    style: TextStyle(
-                      color: GlobalsColors.mainColor,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                    alignment: Alignment.center,
+                    child:
+                    SvgPicture.asset('assets/images/Logo.svg', height: 200)
                 ),
                 const SizedBox(height: 50),
                 Text(
